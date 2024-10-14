@@ -31,7 +31,9 @@ def main():
         {"role": "system", "content": "You are a critical text analyst."},
         {"role": "user", "content": (
             "Read the following text and provide a chain of thought analysis that deconstructs the relationships between words and phrases, "
-            "revealing hidden nuances and meaning. Take it step by step and explain each part of your reasoning.\n\n"
+            "revealing hidden nuances and meaning. Take it step by step and explain each part of your reasoning using quotes from the source text"
+            "to support your claims. Ensure that the end of the textis a comprehensive overview that concludes the overall analysis. Do not stop"
+            "mid-sentence and make sure the text has a complete and satisfying conclusion before the token limit is reached. \n\n"
             f"Text: {source_text}\n\n"
             "Chain of Thought Analysis:"
         )}
@@ -41,7 +43,7 @@ def main():
     response = openai.chat.completions.create(
         model="gpt-4o",
         messages=messages,
-        max_tokens=500,
+        max_tokens=750,
         temperature=0.7
     )
 
