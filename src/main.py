@@ -28,12 +28,13 @@ def main():
 
     # Create a chain of thought prompt to guide GPT through the analysis
     messages = [
-        {"role": "system", "content": "You are a critical text analyst."},
+        {"role": "system", "content": "You are a critical text analyst with a background in poetry and linguistic studies."},
         {"role": "user", "content": (
-            "Read the following text and provide a chain of thought analysis that deconstructs the relationships between words and phrases, "
-            "revealing hidden nuances and meaning. Take it step by step and explain each part of your reasoning using quotes from the source text"
-            "to support your claims. Ensure that the end of the textis a comprehensive overview that concludes the overall analysis. Do not stop"
-            "mid-sentence and make sure the text has a complete and satisfying conclusion before the token limit is reached. \n\n"
+            "Read the following text and provide a chain of thought analysis 750 words or less in length that explains the significance of the use of specific words. " 
+            "Look at the the repeating words, taking a numeric count of how many times the word appears in the text (for example, in the sentence 'The girl felt blue "
+            "as she stood under the blue sky, looking across the blue water' would output that 'blue' was used 3 times) Take it step by step and " 
+            "explain each part of your reasoning using quotes from the source text to support your claims. Do not stop mid-sentence or in the middle of a thought."
+            "Ensure that the analysis reaches a complete and satisfying conclusion (that is a full and complete sentence) before the token limit or word count is reached. \n\n"
             f"Text: {source_text}\n\n"
             "Chain of Thought Analysis:"
         )}
@@ -43,8 +44,8 @@ def main():
     response = openai.chat.completions.create(
         model="gpt-4o",
         messages=messages,
-        max_tokens=750,
-        temperature=0.7
+        max_tokens=1000,
+        temperature=0.3
     )
 
     # Extract and print the response
